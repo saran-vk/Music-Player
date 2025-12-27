@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+    
+    body {
+        margin: 0;
+        display: flex;
+        height: 100vh;
+        font-family: sans-serif;
+    }
+
+    
+    input[type="radio"], input[type="checkbox"] {
+        display: none;
+    }
+
+    
+    .left {
+        width: 40%;
+        background-color: #333;
+        color: white;
+        padding: 20px;
+    }
+
+    .song-label {
+        display: block;
+        padding: 15px;
+        margin-bottom: 10px;
+        background-color: #555;
+        color: white;
+        border: 1px solid white;
+        cursor: pointer;
+        transition: 0.3s;
+    }
+
+    .song-label:hover { background-color: #777; padding-left: 25px; }
+
+    .right {
+        width: 60%;
+        background-color: #eee;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .player-ui {
+        background-color: white;
+        padding: 40px;
+        border-radius: 10px;
+        text-align: center;
+        width: 350px;
+        box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+    }
+
+    .song-slide {
+        display: none; 
+    }
+
+    
+    #r1:checked ~ .right .slide-1 { display: block; }
+    #r2:checked ~ .right .slide-2 { display: block; }
+    #r3:checked ~ .right .slide-3 { display: block; }
+    #r4:checked ~ .right .slide-4 { display: block; }
+
+    
+    #r1:checked ~ .left label[for="r1"],
+    #r2:checked ~ .left label[for="r2"],
+    #r3:checked ~ .left label[for="r3"],
+    #r4:checked ~ .left label[for="r4"] {
+        background-color: #4CAF50; /* Green */
+        border-color: #4CAF50;
+        font-weight: bold;
+    }
+
+    
+    .controls {
+        display: flex;
+        justify-content: center;
+        gap: 10px;
+        margin-top: 20px;
+    }
+
+    /* General Button Style */
+    .btn {
+        padding: 10px 20px;
+        font-size: 18px;
+        cursor: pointer;
+        border-radius: 5px;
+        background-color: #ddd;
+        border: 1px solid #ccc;
+        user-select: none;
+    }
+
+    .btn:hover { background-color: #ccc; }
+
+    .play-btn {
+        background-color: #4CAF50; 
+        color: white;
+        width: 120px;
+    }
+
+    
+    .play-btn::after { content: "▶ Play"; }
+    .status-text::after { content: "Stopped"; color: gray; }
+
+   
+    #playState:checked ~ .right .play-btn {
+        background-color: #ff5722; 
+    }
+    #playState:checked ~ .right .play-btn::after {
+        content: "⏸ Pause"; 
+    }
+    #playState:checked ~ .right .status-text::after {
+        content: "Now Playing..."; 
+        color: green;
+        font-weight: bold;
+    }
+
+</style>
+</head>
+<body>
+
+    <input type="radio" name="track" id="r1" checked>
+    <input type="radio" name="track" id="r2">
+    <input type="radio" name="track" id="r3">
+    <input type="radio" name="track" id="r4">
+
+    <input type="checkbox" id="playState">
+
+    <div class="left">
+        <h2>Songs</h2>
+        <label class="song-label" for="r1">Play Song 1</label>
+        <label class="song-label" for="r2">Play Song 2</label>
+        <label class="song-label" for="r3">Play Song 3</label>
+        <label class="song-label" for="r4">Play Song 4</label>
+    </div>
+
+    <div class="right">
+        <div class="player-ui">
+            
+            <div class="song-slide slide-1">
+                <h1>Song 1</h1>
+                <p class="status-text"></p>
+                <div class="controls">
+                    <label class="btn" for="r4">⏮ Prev</label> 
+                    <label class="btn play-btn" for="playState"></label>
+                    <label class="btn" for="r2">Next ⏭</label>
+                </div>
+            </div>
+
+            <div class="song-slide slide-2">
+                <h1>Song 2</h1>
+                <p class="status-text"></p>
+                <div class="controls">
+                    <label class="btn" for="r1">⏮ Prev</label>
+                    <label class="btn play-btn" for="playState"></label>
+                    <label class="btn" for="r3">Next ⏭</label>
+                </div>
+            </div>
+
+            <div class="song-slide slide-3">
+                <h1>Song 3</h1>
+                <p class="status-text"></p>
+                <div class="controls">
+                    <label class="btn" for="r2">⏮ Prev</label>
+                    <label class="btn play-btn" for="playState"></label>
+                    <label class="btn" for="r4">Next ⏭</label>
+                </div>
+            </div>
+
+            <div class="song-slide slide-4">
+                <h1>Song 4</h1>
+                <p class="status-text"></p>
+                <div class="controls">
+                    <label class="btn" for="r3">⏮ Prev</label>
+                    <label class="btn play-btn" for="playState"></label>
+                    <label class="btn" for="r1">Next ⏭</label>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+</body>
+</html>
